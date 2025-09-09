@@ -12,3 +12,14 @@ Este repositório contém o script SQL para criação do schema `volt` no Postgr
 Observações:
 - Requer extensão `citext` (permissão de superuser para `CREATE EXTENSION citext`).
 - O script usa `IF NOT EXISTS` e é idempotente.
+
+## Interface web para visualizar triggers
+
+Para demonstrar as triggers do schema `volt`, há um pequeno aplicativo Flask.
+
+1. Instale as dependências Python:
+   - `pip install flask psycopg2-binary`
+2. Ajuste as variáveis de ambiente `PGHOST`, `PGPORT`, `PGDATABASE`, `PGUSER` e `PGPASSWORD` se necessário.
+3. Execute o servidor:
+   - `python app.py`
+4. Acesse [http://localhost:5000/](http://localhost:5000/) para listar as triggers.

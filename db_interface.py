@@ -26,6 +26,28 @@ def list_consultas(limit=10):
     return rows
 
 
+def list_triggers():
+    """Return metadata about triggers in schema volt."""
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute(
+        """
+        SELECT event_object_table AS table_name,
+               trigger_name,
+               action_timing,
+               event_manipulation,
+               action_statement
+        FROM information_schema.triggers
+        WHERE trigger_schema = 'volt'
+        ORDER BY event_object_table, trigger_name;
+        """
+    )
+    rows = cur.fetchall()
+    cur.close()
+    conn.close()
+    return rows
+
+
 if __name__ == "__main__":
     for row in list_consultas():
         print(row)
