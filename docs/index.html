@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Banco de Dados Asset — Volt</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 2rem; line-height: 1.5; }
+    code, pre { background:#f6f8fa; padding:.5rem; border-radius:6px; }
+    .container { max-width: 900px; margin: 0 auto; }
+    a.button { display:inline-block; padding:.6rem 1rem; background:#0969da; color:#fff; border-radius:6px; text-decoration:none; }
+    .grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap:1rem; }
+    header { margin-bottom:2rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Banco de Dados Asset — Volt</h1>
+      <p>Este site documenta o schema PostgreSQL <code>volt</code> e aponta para o script SQL do repositório.</p>
+      <p><a class="button" href="../01_database%20(1).sql">Ver script SQL</a></p>
+    </header>
+
+    <section>
+      <h2>Visão geral</h2>
+      <ul>
+        <li>Schema: <code>volt</code></li>
+        <li>Extensão: <code>citext</code></li>
+        <li>Tabelas: <code>usuarios</code>, <code>clientes</code>, <code>ativos</code>, <code>transacoes</code>, <code>consultas</code></li>
+        <li>Triggers: atualização de <code>updated_at</code>, normalização de e-mail, sanitização de documento, status default e prevenção de posição negativa</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Como aplicar localmente</h2>
+      <ol>
+        <li>Crie o banco: <code>CREATE DATABASE volt_capital;</code></li>
+        <li>Execute o arquivo SQL no banco <code>volt_capital</code>.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Validações rápidas</h2>
+      <pre><code>SELECT schema_name FROM information_schema.schemata WHERE schema_name = 'volt';
+SELECT extname FROM pg_extension WHERE extname = 'citext';
+SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'volt';
+</code></pre>
+    </section>
+
+    <footer>
+      <p>Gerado para publicação via GitHub Pages.</p>
+    </footer>
+  </div>
+</body>
+</html>
