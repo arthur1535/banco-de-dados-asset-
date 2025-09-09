@@ -191,6 +191,8 @@ CREATE OR REPLACE TRIGGER trg_consultas_default_status
 BEFORE INSERT ON volt.consultas
 FOR EACH ROW EXECUTE FUNCTION volt.default_status_consulta();
 
+-- Ensure idempotency for the constraint trigger on transacoes
+DROP TRIGGER IF EXISTS trg_transacoes_prevent_negative ON volt.transacoes;
 CREATE CONSTRAINT TRIGGER trg_transacoes_prevent_negative
 AFTER INSERT OR UPDATE ON volt.transacoes
 DEFERRABLE INITIALLY DEFERRED
