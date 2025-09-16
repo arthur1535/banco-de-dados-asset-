@@ -13,6 +13,20 @@ Observações:
 - Requer extensão `citext` (permissão de superuser para `CREATE EXTENSION citext`).
 - O script usa `IF NOT EXISTS` e é idempotente.
 
+### Sementes de dados (seeds)
+
+O script já inclui cargas de exemplo para as tabelas `usuarios`, `clientes`, `ativos`, `transacoes` e `consultas`.
+
+- As inserções usam `ON CONFLICT DO NOTHING` nos campos únicos para evitar duplicidades.
+- A trigger de posição negativa é criada como `CONSTRAINT TRIGGER` e retorna `NEW`, permitindo reexecuções sem erro.
+- A primeira carga cria compras iniciais para evitar posição negativa antes de alternar entre compras e vendas.
+
+Para reaplicar com segurança:
+
+1. Conecte-se ao banco `volt_capital`.
+2. Execute novamente o arquivo `01_database (1).sql`.
+3. Verifique os contadores com as consultas de verificação ao final do arquivo.
+
 ## Interface web para visualizar triggers
 
 Para demonstrar as triggers do schema `volt`, há um pequeno aplicativo Flask.
